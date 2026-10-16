@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Valida migration Flyway criada",
+      "trigger": "PostFileCreate",
+      "description": "Quando uma nova migration SQL é criada, valida nome/numeração/compatibilidade seguindo as convenções do projeto.",
+      "matcher": "db/migration/.*\\.sql$",
+      "action": {
+        "type": "agent",
+        "prompt": "Uma nova migration Flyway foi criada em db/migration. Verifique rapidamente: (1) o nome segue o padrão V<numero>__descricao_em_snake_case.sql com numeração sequencial correta em relação às migrations existentes; (2) o SQL é compatível com PostgreSQL 15; (3) nenhuma migration já existente foi modificada. Se algo estiver errado, avise o usuário com a correção. Se estiver tudo certo, apenas confirme em uma linha."
+      }
+    }
+  ]
+}

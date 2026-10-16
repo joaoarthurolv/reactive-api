@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Compila ao salvar Java",
+      "trigger": "PostFileSave",
+      "description": "Compila o projeto com o Maven wrapper sempre que um arquivo .java é salvo, dando feedback rápido de erros de compilação.",
+      "matcher": "\\.java$",
+      "action": {
+        "type": "command",
+        "command": "cd \"$KIRO_WORKSPACE_ROOT\" 2>/dev/null; ./mvnw -q -o compile 2>&1 | tail -n 40 || true",
+        "timeout": 180
+      }
+    }
+  ]
+}
